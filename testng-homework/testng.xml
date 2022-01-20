@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite"  parallel="tests">
+
+
+    <test name="Testng1">
+        <classes>
+            <class name="RadioButtonTests">
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="Testng2">
+        <classes>
+            <class name="CheckboxTests">
+            </class>
+        </classes>
+    </test>
+
+
+</suite>
