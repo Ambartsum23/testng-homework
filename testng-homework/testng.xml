@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite"  parallel="tests">
+<suite name="Automation Suite" parallel="tests" thread-count="2">
 
-
-    <test name="Testng1">
-        <classes>
-            <class name="RadioButtonTests">
-            </class>
-        </classes>
-    </test>
-
-
-    <test name="Testng2">
+    <test name="test1">
         <classes>
             <class name="CheckboxTests">
             </class>
         </classes>
     </test>
-
-
+    <test name="test2">
+        <classes>
+            <class name="RadioButtonTests">
+                <methods>
+                    <exclude name="checkIfDisabled"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
