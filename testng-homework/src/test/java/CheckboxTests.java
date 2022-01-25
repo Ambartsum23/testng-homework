@@ -1,48 +1,46 @@
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.testng.ScreenShooter;
 import com.codeborne.selenide.testng.SoftAsserts;
-import org.jetbrains.annotations.NotNull;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Configuration.reportsFolder;
+import org.testng.annotations.Test;
+import org.testng.annotations.Listeners;
+import static com.codeborne.selenide.Selenide.open;
+
 
 @Listeners({ SoftAsserts.class, ScreenShooter.class})
-public class CheckboxTests {
-    @BeforeClass
-    public void befclass(){
-        ConfigTests config = new ConfigTests();
-        config.configMethod();
-        config.checkboxurl();
-        config.screenshotcheckbox();
+public class CheckboxTests extends ConfigTests{
+    SoftAssert soft = new SoftAssert();
+
+    public CheckboxTests() {
+        reportsFolder = "src/main/resources/CheckboxFailedTests";
     }
-    @BeforeTest
+
+   @BeforeTest
     public void beforeTest(){
-        System.out.println("before Test1");
+        System.out.println("checkbox test");
     }
-    @Test
-    public void assertcheckbox(){
-        SoftAssert softAssert = new SoftAssert();
-        open("/checkboxes");
-        ElementsCollection checkbox = $$("input[type=checkbox]");
-        uncheck(checkbox);
-        softAssert.assertEquals($("input[type=checkbox]").getAttribute("checked"),"True", "failed assertion, is boxes checked?");
-        checkunchecked(checkbox);
-        softAssert.assertEquals($("input[type=checkbox]").getAttribute("checked"),null, "failed assertion, is boxes unchecked?");
-        softAssert.assertAll();
+
+    @Test(description = "uncheck checked checkbox", groups = {"FrontEnd"})
+    public void uncheck() {
+        open("http://the-internet.herokuapp.com/checkboxes");
+        SelenideElement secondCheck = $("#checkboxes").$("input", 0);
+        secondCheck.click();
+        soft.assertTrue(secondCheck.isSelected());
+        soft.assertAll();
     }
-    public void uncheck(@NotNull ElementsCollection checkboxes){
-        for (SelenideElement chckbox:checkboxes){
-            chckbox.setSelected(false);
-        }
+
+    @Test(description = "check unchecked checkbox", dependsOnMethods = "uncheck", alwaysRun = true, groups = {"BackEnd"})
+    public void check() {
+        open("http://the-internet.herokuapp.com/checkboxes");
+
+        SelenideElement firstCheck = $("#checkboxes").$("input", 1);
+        firstCheck.click();
+        soft.assertFalse(firstCheck.isSelected());
+        soft.assertAll();
     }
-    public void checkunchecked(@NotNull ElementsCollection checkboxes){
-        for (SelenideElement chckbox:checkboxes){
-            chckbox.setSelected(true);
-        }
-    }
-    @AfterMethod
-    public void close(){
-        closeWindow();
-    }
+
 }
+

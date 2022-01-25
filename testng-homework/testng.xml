@@ -1,22 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite"  parallel="tests">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" parallel="classes" thread-count = "10">
+    <listeners>
+        <listener class-name="Retry.MyAnnotationTransformer"/>
+    </listeners>
+    <test name="TestNgExecutionHomework" >
+        <groups>
+            <define name="AllGroups">
+                <include name=".*End"/>
 
-
-    <test name="Testng1">
+            </define>
+            <run>
+                <include name="AllGroups"/>
+            </run>
+        </groups>
         <classes>
-            <class name="RadioButtonTests">
-            </class>
+            <class name="ConfigTests"/>
+            <class name="CheckboxTests" />
+            <class name="RadioButtonTests" />
+            <class name="Retry.TryMyCustomAnnotation"/>
+
         </classes>
     </test>
-
-
-    <test name="Testng2">
-        <classes>
-            <class name="CheckboxTests">
-            </class>
-        </classes>
-    </test>
-
-
 </suite>
