@@ -14,7 +14,6 @@
             </run>
         </groups>
         <classes>
-            <class name="ConfigTests"/>
             <class name="CheckboxTests" />
             <class name="RadioButtonTests" />
             <class name="Retry.TryMyCustomAnnotation"/>
