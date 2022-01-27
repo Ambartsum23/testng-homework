@@ -1,0 +1,42 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="testNG_Parametrization">
+    <test name="TestNGParametrization1" >
+        <parameter name="firstName" value="firstName1"/>
+        <parameter name="lastName" value="lastName1"/>
+        <parameter name="gender" value="Female"/>
+        <parameter name="mobileNumber" value="5555555555"/>
+        <classes>
+            <class name="Parametrization.StudentRegFormParam"/>
+        </classes>
+    </test>
+    <test name="TestNGParametrization2" >
+        <parameter name="firstName" value="firstName2"/>
+        <parameter name="lastName" value="lastName2"/>
+        <parameter name="gender" value="Male"/>
+        <parameter name="mobileNumber" value="6666666666"/>
+        <classes>
+            <class name="Parametrization.StudentRegFormParam"/>
+        </classes>
+    </test>
+    <test name="TestNGParametrization3" >
+        <parameter name="firstName" value="firstName3"/>
+        <parameter name="lastName" value="lastName3"/>
+        <parameter name="gender" value="Other"/>
+        <parameter name="mobileNumber" value="7777777777"/>
+        <classes>
+            <class name="Parametrization.StudentRegFormParam"/>
+        </classes>
+    </test>
+    <test name="DataProviderTest" >
+        <classes>
+            <class name="Parametrization.FillStudentRegFormDataProvider"/>
+            <class name="Parametrization.DataProviderRegisterForm"/>
+        </classes>
+    </test>
+    <test name="FactoryTest" >
+        <classes>
+            <class name="Parametrization.FillStudentRegForm"/>
+            <class name="Parametrization.StudentFactory"/>
+        </classes>
+    </test>
+</suite>
